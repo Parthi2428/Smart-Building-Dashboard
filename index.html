@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard</title>
+    <link href="Themes/plugins/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="Themes/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="Themes/CSS/style.css" rel="stylesheet" />
+    <script src="Themes/plugins/jquery/jquery-3.7.1.min.js"></script>
+    <script src="Themes/plugins/angularjs/angular.min.js"></script>
+    <script src="Themes/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="Themes/plugins/echart/echarts.min.js"></script>
+    <script src="Themes/js/dashboard.js"></script>
+</head>
+<body ng-app="myApp">
+    <div class="container-fluid p-0 parent-contain"  ng-controller="myController">
+
+        <header class="header-section">
+            <div class="header-grp">
+                <div class="header-left">
+                    <span class="dte-time">2024/07/11 15:25:02</span>
+                </div>
+                <div class="header-middle">
+                    <span class="title-name">SMART BUILDING DASHBOARD</span>
+                </div>
+                <div class="header-right">
+
+                    <div class="profileimage-sec">
+                        <span class="profile-img">
+                            <img src="Themes/images/user.png" />
+                        </span>
+                        <div class="name-conatin">
+                            <div class="name-conatin-lbl">Nickjones@gmail.com</div>
+                            <div class="name-conatin-prl">Admin</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+           
+        </header>
+        <div class="body-container">
+            <div class="left-panel">
+                <div class="operation-stats">
+                    <div class="optsts-inner">
+                        <div class="innerheading">OPERATION STATISTICS</div>
+                        <div class="count-container">
+                            <div class="countbox">
+                                <span class="count-icon">
+                                    <img src="Themes/images/sampleicon.png" />
+                                </span>
+                                <div class="count-div">
+                                    <span class="countnumber">2,478</span>
+                                    <span class="count-lbl">Camera</span>
+                                </div>
+                            </div>
+                            <div class="count-detail">
+                                <div class="countdetail-innerbox">
+                                    <span class="cntd-lbl">Online</span>
+                                    <div class="cntd-count"><span class="cnt-currnt">722</span>/<span class="cnt-total">840</span></div>
+                                </div>
+                                <div class="countdetail-innerbox offline">
+                                    <span class="cntd-lbl">Offline</span>
+                                    <div class="cntd-count"><span class="cnt-currnt">89</span>/<span class="cnt-total">840</span></div>
+                                </div>
+                                <div class="countdetail-innerbox unchekd">
+                                    <span class="cntd-lbl">Unchecked</span>
+                                    <div class="cntd-count"><span class="cnt-currnt">19</span>/<span class="cnt-total">840</span></div>
+                                </div>
+                            </div>
+                            <div class="progressbarchrt">
+                                <span class="online-bar"></span>
+                                <span class="offline-bar"></span>
+                                <span class="unchecked-bar"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stsbox devicests">
+                    <div class="trans-header"><span class="subhead">Device Status</span><span class="time-period">LAST 7 DAYS</span></div>
+                    <div class="stschart-container">
+                        <div class="stschartgrp">
+                            <div class="charthead">NVR</div>
+                            <div class="chart_box">
+                                <div id="nvrchart" class="chartinner"></div>
+                                <span class="centertxt">{{sum}}</span>
+                            </div>
+                            <div class="legend_box">
+                                <div class="legenddiv">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Online</span>
+                                    </div>
+                                    <div class="lgnd_count">604</div>
+                                </div>
+                                <div class="legenddiv stsoffline">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Offline</span>
+                                    </div>
+                                    <div class="lgnd_count">563</div>
+                                </div>
+                                <div class="legenddiv stsunchkd">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Unchecked</span>
+                                    </div>
+                                    <div class="lgnd_count">24</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stschartgrp">
+                            <div class="charthead">Camera</div>
+                            <div class="chart_box">
+                                <div id="camerachart" class="chartinner"></div>
+                                <span class="centertxt">{{sum}}</span>
+                            </div>
+                            <div class="legend_box">
+                                <div class="legenddiv">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Online</span>
+                                    </div>
+                                    <div class="lgnd_count">604</div>
+                                </div>
+                                <div class="legenddiv stsoffline">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Offline</span>
+                                    </div>
+                                    <div class="lgnd_count">563</div>
+                                </div>
+                                <div class="legenddiv stsunchkd">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Unchecked</span>
+                                    </div>
+                                    <div class="lgnd_count">24</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stsbox">
+                    <div class="trans-header"><span class="subhead">Device Status</span><span class="time-period">LAST 7 DAYS</span></div>
+                    <div class="onoff-count">
+                        <div class="onoffcnt-box">
+                            <span class="onoffcnt">2879</span>
+                            <span class="onofflbl">Online</span>
+                        </div>
+                        <div class="onoffcnt-box offline">
+                            <span class="onoffcnt">1540</span>
+                            <span class="onofflbl">Offline</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stsbox">
+                    <div class="trans-header"><span class="subhead">Image/Video Status</span><span class="time-period">LAST 7 DAYS</span></div>
+                    <div class="stschart-container">
+                        <div class="stschartgrp">
+                            <div class="charthead">Image</div>
+                            <div class="chart_box">
+                                <div id="imagechart" class="chartinner"></div>
+                                <span class="centertxt">{{sum}}</span>
+                            </div>
+                            <div class="legend_box">
+                                <div class="legenddiv">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Normal</span>
+                                    </div>
+                                    <div class="lgnd_count">604</div>
+                                </div>
+                                <div class="legenddiv stsoffline">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Abnormal</span>
+                                    </div>
+                                    <div class="lgnd_count">563</div>
+                                </div>
+                                <div class="legenddiv fcheck">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Failed Check</span>
+                                    </div>
+                                    <div class="lgnd_count">24</div>
+                                </div>
+                                <div class="legenddiv stsunchkd">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Unchecked</span>
+                                    </div>
+                                    <div class="lgnd_count">10</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stschartgrp">
+                            <div class="charthead">Video</div>
+                            <div class="chart_box">
+                                <div id="videochart" class="chartinner"></div>
+                                <span class="centertxt">{{sum}}</span>
+                            </div>
+                            <div class="legend_box">
+                                <div class="legenddiv">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Online</span>
+                                    </div>
+                                    <div class="lgnd_count">604</div>
+                                </div>
+                                <div class="legenddiv stsoffline">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Offline</span>
+                                    </div>
+                                    <div class="lgnd_count">563</div>
+                                </div>
+                                <div class="legenddiv fcheck">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Failed Check</span>
+                                    </div>
+                                    <div class="lgnd_count">24</div>
+                                </div>
+                                <div class="legenddiv stsunchkd">
+                                    <div class="legend_lblbox">
+                                        <span class="lgnd_dot"></span>
+                                        <span class="lgnd_lbl">Unchecked</span>
+                                    </div>
+                                    <div class="lgnd_count">10</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="operation-stats">
+                    <div class="optsts-inner">
+                        <div class="innerheading">ALARM OVERVIEW</div>
+                        <div class="alrmoview-container">
+                            <div class="alrmoview-total">
+                                <div class="radardiv">
+                                    <div class="sweep"></div>
+                                    <div class="atotalbox">
+                                        <div class="atotal-count">293</div>
+                                        <span class="atotal-lbl">Total</span>
+                                    </div>
+                                    <div class="arrow-box">
+                                        <span class="rdr-arrow top"></span><span class="rdr-arrow right"></span><span class="rdr-arrow bottom"></span><span class="rdr-arrow left"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alrmoview-detail">
+                                <div class="alrmoview-proces">
+                                    <div class="radardiv">
+                                        <div class="sweep"></div>
+                                        <i class="fa fa-building"></i>
+                                    </div>
+                                    <div class="atotalbox">
+                                        <span class="atotal-lbl">Processed</span>
+                                        <div class="atotal-count">100</div>
+                                    </div>
+                                </div>
+                                <div class="alrmoview-proces unprocess">
+                                    <div class="radardiv">
+                                        <div class="sweep"></div>
+                                        <i class="fa fa-building"></i>
+                                    </div>
+                                    <div class="atotalbox">
+                                        <span class="atotal-lbl">Unprocessed</span>
+                                        <div class="atotal-count">193</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stsbox">
+                    <div class="trans-header"><span class="subhead">ALARM TYPE TOPS</span></div>
+                    <div class="alrmtypelistbox" >
+                        <div class="alrmtypelist" ng-repeat="data in alarmtypeDetails">
+                            <div class="alrmnum">{{data.sno}}</div>
+                            <div class="alrmtype">
+                                <div class="alrmlbldiv">
+                                    <span class="alrmtypename">{{data.name}}</span>
+                                    <div class="alrmtype-cntgrp"><span class="alrmtypecnt">{{data.alarmtypeCount}}</span>/<span class="alrmtypetotal">{{data.total}}</span></div>
+                                </div>
+                                <div class="progress alrmtype_progress">
+                                    <div class="progress-bar" ng-style="{'width': data.pwidth}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="stsbox">
+                    <div class="trans-header"><span class="subhead">ALARM AREA TOPS</span></div>
+                    <div class="alarmarea-box">
+                        <div class="areabox rd mdm"><span class="area-cnt">4</span><span class="area-lbl">Area 29</span></div>
+                        <div class="areabox rd lrg"><span class="area-cnt">7</span><span class="area-lbl">Area 31</span></div>
+                        <div class="areabox rd sm"><span class="area-cnt">2</span><span class="area-lbl">Area 30</span></div>
+                        <div class="areabox blu"><span class="area-cnt">0</span><span class="area-lbl">Area 19</span></div>
+                        <div class="areabox blu2"><span class="area-cnt">0</span><span class="area-lbl">Area 20</span></div>
+
+                    </div>
+                </div>
+                <div class="stsbox">
+                    <div class="trans-header"><span class="subhead">ALARM LEVEL</span></div>
+                    <div class="alarmlvl-container">
+                        <div class="count-detail">
+                            <div class="countdetail-innerbox">
+                                <span class="cntd-lbl">Low</span>
+                                <div class="cntd-count"><span class="cnt-currnt">722</span>/<span class="cnt-total">722</span></div>
+                            </div>
+                            <div class="countdetail-innerbox offline">
+                                <span class="cntd-lbl">Mid</span>
+                                <div class="cntd-count"><span class="cnt-currnt">89</span>/<span class="cnt-total">89</span></div>
+                            </div>
+                            <div class="countdetail-innerbox unchekd">
+                                <span class="cntd-lbl">High</span>
+                                <div class="cntd-count"><span class="cnt-currnt">19</span>/<span class="cnt-total">19</span></div>
+                            </div>
+                        </div>
+                        <div class="progressbarchrt">
+                            <span class="online-bar low"></span>
+                            <span class="offline-bar"></span>
+                            <span class="unchecked-bar"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stsbox">
+                    <div class="trans-header"><span class="subhead">ALARM TRENDS</span><span class="time-period">LAST 7 DAYS</span></div>
+                    <div class="alrmtrend-container">
+                        <div class="alarmtrnd-chart" id="alarmChart">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
