@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', []);
-myApp.controller('myController', function ($scope) {
+myApp.controller('myController', function ($scope,$interval) {
 
     $scope.alarmtypeDetails = [];
     $scope.alarmtypeDetails = [{ name: 'Floor alarm', sno: '1', total: '604', alarmtypeCount: '290', pwidth:'80%' },
@@ -8,7 +8,12 @@ myApp.controller('myController', function ($scope) {
         { name: 'Floor count alarm', sno: '4', total: '604', alarmtypeCount: '40', pwidth: '40%' },
        // { name: 'Floor count alarm', sno: '5', total: '604', alarmtypeCount: '40', pwidth: '40%' },
     ]
+$scope.currentDate = new Date();
 
+    // Update the time every second
+    $interval(function () {
+        $scope.currentDate = new Date();
+    }, 1000);
     var chart1 = document.getElementById('nvrchart');
     var chart2 = document.getElementById('camerachart');
     var chart3 = document.getElementById('imagechart');
